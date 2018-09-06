@@ -1,0 +1,23 @@
+{
+  "name": "@tiger/tiger-hook",
+  "version": "1.0.1",
+  "description": "用于服务监控，链路跟踪，远程调试，错误信息上报，日志上报等功能",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "package": "rm -rf publish && tsc && cp package.json ./publish"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@git.mail.netease.com:tiger/tiger-hook.git"
+  },
+  "author": "hzjinbing@163.com",
+  "license": "ISC",
+  "dependencies": {
+    "shimmer": "^1.2.0"
+  },
+  "devDependencies": {
+    "@types/shimmer": "^1.0.1",
+    "@types/node": "^10.9.4"
+  }
+}
