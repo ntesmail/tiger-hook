@@ -1,4 +1,5 @@
 import {IHook} from "../IHook";
+import {AxonRpcClient} from "../../client/AxonRpcClient";
 
 export class HeapHook implements IHook{
 
@@ -11,6 +12,11 @@ export class HeapHook implements IHook{
         this.__instance = new HeapHook();
         return this.__instance;
     }
+    axonClient: AxonRpcClient;
+
+    constructor(){
+        this.axonClient = AxonRpcClient.getInstance();
+    }
 
     /**
      * description: hook查看堆栈信息
@@ -18,8 +24,11 @@ export class HeapHook implements IHook{
      */
     hook(): void  {
         setInterval(()=>{
-            // console.error(process.memoryUsage());
-        }, 1000);
+            let params = {
+                mem: process.memoryUsage()
+            };
+            this.axonClient.send('heap', params)
+        }, 5000);
     }
 
 }

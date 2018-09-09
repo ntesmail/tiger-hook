@@ -24,3 +24,33 @@ app
     lib: 包的源代码
     src: 用来测试包的代码
 ```
+
+## db
+```text
+mem_${app}_${time}: JSON.stringify(一天的数据)
+err_${app}_${time}: JSON.stringify({
+    message: '错误信息',
+    line: '行号'
+})
+
+err_${app}_${time}: {
+    "stack--->md5": {
+        message: '错误信息',
+        stack: '堆栈',
+        count++,
+        lastTime: 上一次出现的时间
+    }
+}
+
+err_${app}_${md5}: {
+    "info": {
+        message: '错误信息',
+        stack: '堆栈',
+    }
+    "times": [num, num, num]
+}
+
+```
+
+## 当前规划
+当前只考虑可用性，架构优化方面到时再逐步优化，先把功能可用，然后到时压测下效果。

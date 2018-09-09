@@ -1,0 +1,21 @@
+<ul nz-menu [nzMode]="'inline'" style="height:100%" app-unwrap="">
+  <li nz-submenu *ngFor="let item of applications" [nzOpen]="item.open">
+    <span title><i class="anticon anticon-{{item.icon}}"></i>{{item.name}}</span>
+    <ul>
+      <li nz-menu-item [nzSelected]="item.tabs.dashboard" (click)="goPath(item, 'dashboard')">
+        <a routerLinkActive="true" routerLink="application/dashboard">Dashboard</a>
+      </li>
+      <li nz-menu-item [nzSelected]="item.tabs.alertManage">告警配置</li>
+      <li nz-menu-item [nzSelected]="item.tabs.logAnalyze">日志分析</li>
+      <li nz-menu-item [nzSelected]="item.tabs.appStructure">服务结构</li>
+      <li nz-menu-item [nzSelected]="item.tabs.errorMessage" (click)="goPath(item, 'errorMessage')">
+        <a routerLinkActive="true" routerLink="application/errorMessage">错误信息</a>
+      </li>
+      <li nz-menu-item [nzSelected]="item.tabs.appStatus" (click)="goPath(item, 'appStatus')">
+        <a routerLinkActive="true" routerLink="application/appStatus">状态跟踪</a>
+      </li>
+      <li nz-menu-item [nzSelected]="item.tabs.traceManage">链路跟踪</li>
+      <li nz-menu-item [nzSelected]="item.tabs.remoteDebug">远程调试</li>
+    </ul>
+  </li>
+</ul>

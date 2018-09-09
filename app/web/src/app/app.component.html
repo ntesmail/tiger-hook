@@ -1,0 +1,16 @@
+<nz-layout class="layout">
+  <nz-header>
+    <div class="logo">
+      <span>Node监控中心</span>
+    </div>
+    <app-header-menu [titles]="titles" (onSelect)="selectHeaderMenu($event)"></app-header-menu>
+  </nz-header>
+  <nz-layout>
+    <nz-sider [nzWidth]="200" style="background:#fff">
+      <app-side-nav [menuType]="menuType"></app-side-nav>
+    </nz-sider>
+    <nz-layout style="padding:0 24px 24px">
+        <router-outlet></router-outlet>
+    </nz-layout>
+  </nz-layout>
+</nz-layout>

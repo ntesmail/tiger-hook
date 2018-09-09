@@ -2,6 +2,8 @@ import {IHook} from "./IHook";
 import {HttpHook} from "./Impl/HttpHook";
 import {HeapHook} from "./Impl/HeapHook";
 import {ConsoleHook} from "./Impl/ConsoleHook";
+import {ErrorHook} from "./Impl/ErrorHook";
+import {ProcessErrorHook} from "./Impl/ProcessErrorHook";
 
 export class HookManage{
     static __instance: HookManage;
@@ -15,7 +17,7 @@ export class HookManage{
     }
 
     initHooks(){
-        const hooks: any[] = [HttpHook, HeapHook, ConsoleHook];
+        const hooks: any[] = [HttpHook, HeapHook, ConsoleHook, ErrorHook, ProcessErrorHook];
 
         hooks.map(hookClass=>{
             const hook: IHook = hookClass.getInstance();

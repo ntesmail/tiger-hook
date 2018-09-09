@@ -1,0 +1,33 @@
+<nz-content style="background:#fff; padding: 24px; min-height: 280px; margin-top: 20px;">
+  <form nz-form class="ant-advanced-search-form">
+    <div nz-row>
+      <div nz-col [nzSpan]="24">
+        <h1>Dashboard</h1>
+      </div>
+      <div nz-col [nzSpan]="8">
+        <span>服务名: </span>
+        <span>tiger-ape</span>
+      </div>
+      <div nz-col [nzSpan]="8">
+        <span>节点数量: </span>
+        <span>8</span>
+      </div>
+    </div>
+  </form>
+  <div style="margin-top: 20px;">
+    <div nz-row>
+      <div style="float: left; width: 200px; height: 200px; border:1px solid #ccc">
+        <ul>
+          <li>10.10.1.1</li>
+          <li>10.10.10.2</li>
+        </ul>
+      </div>
+      <div style="margin-left: 220px;">
+        <div echarts [options]="chartOption" class="demo-chart" *ngIf="!loading"></div>
+        <div class="loading" *ngIf="loading">
+          <nz-spin></nz-spin>
+        </div>
+      </div>
+    </div>
+  </div>
+</nz-content>
