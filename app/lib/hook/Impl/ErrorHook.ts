@@ -27,6 +27,8 @@ export class ErrorHook implements IHook{
         shimmer.wrap(console, 'error', (original)=>{
             let self = this;
             return function(){
+                // @ts-ignore
+                const returned = original.apply(this, arguments);
                 try{
                     throw new Error();
                 }catch(e){
@@ -43,6 +45,7 @@ export class ErrorHook implements IHook{
                     };
                     self.axonClient.send('error', errorInfo)
                 }
+                return returned;
             }
         });
     }

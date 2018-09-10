@@ -50,6 +50,19 @@ err_${app}_${md5}: {
     "times": [num, num, num]
 }
 
+http_${app}_${time}: {
+    "${url}_${method}": {
+        count: ${count},
+        method: ${method},
+        "average": "10.11"
+    }
+}
+
+http_${app}_${url}_${method}: [
+    {startTime: 1536594532903, useTime: 33, method: 'GET'},
+    {startTime: 1536594532903, useTime: 33, method: 'GET'},
+]
+
 ```
 
 ## 当前规划

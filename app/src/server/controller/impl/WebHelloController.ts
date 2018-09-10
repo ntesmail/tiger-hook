@@ -4,7 +4,7 @@ import {RedisClient} from "redis";
 import {NextFunction, Request, Response} from "express";
 
 export class WebHelloController implements IWebController{
-    prefix: String = '/xhr/getProcessInfo.do';
+    prefix: String = '/xhr/application/getProcessInfo.do';
     redisClient: RedisClient;
 
     constructor(){
@@ -22,11 +22,12 @@ export class WebHelloController implements IWebController{
                 resolve(JSON.parse(result));
             })
         });
-        console.log(`useTime: ${new Date().getTime() - startTime}`);
+        console.log(`useTime: ${new Date().getTime() - startTime}ms`);
         let result = {
             code: 200,
             data: item
         };
         res.send(result);
+
     }
 }

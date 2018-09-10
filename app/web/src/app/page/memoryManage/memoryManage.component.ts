@@ -44,7 +44,7 @@ export class MemoryManageComponent implements OnInit{
   initData(){
     this.loading = true;
     setTimeout(()=>{
-      this.http.get("/xhr/getProcessInfo.do").subscribe((result: any)=>{
+      this.http.get("/xhr/application/getProcessInfo.do").subscribe((result: any)=>{
         let xAxis = {};
         let currentTime = new Date(result.data.currentTime);
         let time: number = parseInt("" + (new Date(result.data.currentTime).getTime() - new Date(currentTime.getFullYear(), currentTime.getMonth(), currentTime.getDate()).getTime())/5/1000);

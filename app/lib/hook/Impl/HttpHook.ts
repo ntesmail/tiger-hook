@@ -22,6 +22,7 @@ export class HttpHook implements IHook{
     hook(): void  {
         shimmer.wrap(http, 'request', original => {
             return function(){
+                console.log("====>request");
                 // @ts-ignore
                 const result = original.apply(this, arguments);
                 return result;
