@@ -1,1 +1,43 @@
-hello world
+<nz-content>
+  <div nz-row class="ant-advanced-search-form">
+    <div nz-col [nzSpan]="24">
+      <h1>错误信息</h1>
+    </div>
+    <div nz-col [nzSpan]="8">
+      <span>服务名: </span>
+      <span>tiger-ape</span>
+    </div>
+    <div nz-col [nzSpan]="8">
+      <span>节点数量: </span>
+      <span>8</span>
+    </div>
+  </div>
+  <div style="margin-top: 20px;">
+    <div style="float: left; width: 200px; height: 200px; border:1px solid #ccc">
+      <ul>
+        <li>10.10.1.1</li>
+        <li>10.10.10.2</li>
+      </ul>
+    </div>
+    <div style="margin-left: 220px;">
+      <nz-table class="m-table--unclear">
+        <thead>
+          <tr>
+            <th>错误信息</th>
+            <th>错误堆栈</th>
+            <th>出现次数</th>
+            <th>上一次出现的时间</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let errorMessage of errorMessages">
+            <td>{{errorMessage.content.message}}</td>
+            <td [innerHtml]="errorMessage.content.stack"></td>
+            <td>{{errorMessage.content.count}}</td>
+            <td>{{errorMessage.content.lastTime | date: 'yyyy-MM-dd HH:mm:ss'}}</td>
+          </tr>
+        </tbody>
+      </nz-table>
+    </div>
+  </div>
+</nz-content>

@@ -10,20 +10,14 @@ import EChartOption = echarts.EChartOption;
   styles: [
     `.demo-chart {
         height: 600px;
-      }
-      .loading{
+     }
+     .loading{
         text-align: center;
         background: rgba(0,0,0,0.05);
         border-radius: 4px;
         margin-bottom: 20px;
         padding: 30px 50px;
         margin: 20px 0;
-      }
-      .ant-advanced-search-form {
-        padding: 24px;
-        background: #fbfbfb;
-        border: 1px solid #d9d9d9;
-        border-radius: 6px;
       }
 
       [nz-form-label] {
@@ -52,9 +46,9 @@ export class MemoryManageComponent implements OnInit{
     setTimeout(()=>{
       this.http.get("/xhr/getProcessInfo.do").subscribe((result: any)=>{
         let xAxis = {};
-        let currentTime = new Date();
-        let time: number = parseInt("" + (new Date().getTime() - new Date(currentTime.getFullYear(), currentTime.getMonth(), currentTime.getDate()).getTime())/5/1000);
-        console.log(time);
+        let currentTime = new Date(result.data.currentTime);
+        let time: number = parseInt("" + (new Date(result.data.currentTime).getTime() - new Date(currentTime.getFullYear(), currentTime.getMonth(), currentTime.getDate()).getTime())/5/1000);
+        console.log((new Date(result.data.currentTime).getTime() - new Date(currentTime.getFullYear(), currentTime.getMonth(), currentTime.getDate()).getTime())/5/1000);
         for(let i = 0; i < time; i++){
           xAxis["" + i] = {
             rss: 0,
@@ -144,7 +138,7 @@ export class MemoryManageComponent implements OnInit{
             }
           ]
         };
-        Object.assign(xAxis, result.data);
+        Object.assign(xAxis, result.data.processInfo);
         (<any>this.chartOption.xAxis).data = Object.keys(xAxis).map((item: string) => {
           let time: number = new Date(2018, 8, 7).getTime() + 5 * 1000 * parseInt(item);
           let currentDay = new Date(time);
@@ -154,6 +148,7 @@ export class MemoryManageComponent implements OnInit{
         let allResult = [];
         let rsses = [];
         let heapTotals = [];
+        console.log(Object.keys(xAxis));
         for(let i = 0; i < Object.keys(xAxis).length; i++){
           allResult.push(xAxis[i].heapUsed/1024);
           rsses.push(xAxis[i].rss/1024);

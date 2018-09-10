@@ -18,6 +18,7 @@ import {MemoryManageComponent} from "./page/memoryManage/memoryManage.component"
 import {MemoryManageModule} from "./page/memoryManage/memoryManage.module";
 import { RouterModule } from "@angular/router";
 import {ErrorMessageManageModule} from "./page/errorMessage/errorMessageManage.module";
+import {AppCommonModule} from "./common/common.module";
 
 registerLocaleData(zh);
 
@@ -32,13 +33,7 @@ registerLocaleData(zh);
     MemoryManageComponent
   ],
   imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    NgZorroAntdModule,
-    NgxEchartsModule,
+    AppCommonModule,
     MemoryManageModule,
     ErrorMessageManageModule,
     RouterModule.forRoot([], {useHash: true})

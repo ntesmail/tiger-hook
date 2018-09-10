@@ -1,1 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
+.ant-advanced-search-form {
+  padding: 24px;
+  background: #fbfbfb;
+  border: 1px solid #d9d9d9;
+  border-radius: 6px;
+}
+
+nz-content {
+  background: #fff;
+  padding: 24px;
+  min-height: 280px;
+  margin-top: 20px;
+}
+
+.m-table--unclear .ant-table{
+  clear: none;
+}
