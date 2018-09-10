@@ -20,7 +20,7 @@
       </ul>
     </div>
     <div style="margin-left: 220px;">
-      <nz-table class="m-table--unclear">
+      <nz-table class="m-table--unclear" [nzData]="errorMessages" #errorMessagesTable>
         <thead>
           <tr>
             <th>错误信息</th>
@@ -30,7 +30,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let errorMessage of errorMessages">
+          <tr *ngFor="let errorMessage of errorMessagesTable.data">
             <td>{{errorMessage.content.message}}</td>
             <td [innerHtml]="errorMessage.content.stack"></td>
             <td>{{errorMessage.content.count}}</td>

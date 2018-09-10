@@ -48,7 +48,6 @@ export class MemoryManageComponent implements OnInit{
         let xAxis = {};
         let currentTime = new Date(result.data.currentTime);
         let time: number = parseInt("" + (new Date(result.data.currentTime).getTime() - new Date(currentTime.getFullYear(), currentTime.getMonth(), currentTime.getDate()).getTime())/5/1000);
-        console.log((new Date(result.data.currentTime).getTime() - new Date(currentTime.getFullYear(), currentTime.getMonth(), currentTime.getDate()).getTime())/5/1000);
         for(let i = 0; i < time; i++){
           xAxis["" + i] = {
             rss: 0,
@@ -148,7 +147,6 @@ export class MemoryManageComponent implements OnInit{
         let allResult = [];
         let rsses = [];
         let heapTotals = [];
-        console.log(Object.keys(xAxis));
         for(let i = 0; i < Object.keys(xAxis).length; i++){
           allResult.push(xAxis[i].heapUsed/1024);
           rsses.push(xAxis[i].rss/1024);
