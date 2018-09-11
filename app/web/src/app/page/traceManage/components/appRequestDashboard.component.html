@@ -1,0 +1,8 @@
+<ul>
+  <li *ngFor="let item of httpRequestInfos" style="border: 1px solid #ccc;margin-bottom: 20px;padding: 5px; border-radius: 4px;">
+    <div>
+      <p>url: {{item.url}} 【{{item.method}}】平均耗时: {{item.averageUseTime}}ms 累计请求数量: {{item.count}}次</p>
+      <nz-progress [nzPercent]="item.percent" nzStatus="active"></nz-progress>
+    </div>
+  </li>
+</ul>

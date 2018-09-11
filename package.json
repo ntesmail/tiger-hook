@@ -1,11 +1,13 @@
 {
   "name": "@tiger/tiger-hook",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "用于服务监控，链路跟踪，远程调试，错误信息上报，日志上报等功能",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "package": "rm -rf publish && tsc && cp package.json ./publish"
+    "package": "rm -rf publish && tsc && cp package.json ./publish",
+    "docker": "rm -rf dist && cd app/src && rm -rf public && tsc && cd ../../ && cp package.json ./dist && cp package.json ./dist/lib && cd app/web && npm run build && mkdir -p ../src/public && cp -rf dist/web/* ../src/public && cd ../../ && cd dist && npm install && cd ../ && docker build -t tiger-hook-web .",
+    "clean": "rm -rf publish && rm -rf dist"
   },
   "repository": {
     "type": "git",
@@ -16,11 +18,11 @@
   "dependencies": {
     "axon": "^2.0.3",
     "axon-rpc": "0.0.3",
-    "redis": "^2.8.0",
-    "shimmer": "^1.2.0",
-    "utility": "^1.14.0"
+    "shimmer": "^1.2.0"
   },
   "devDependencies": {
+    "redis": "^2.8.0",
+    "utility": "^1.14.0",
     "@types/axon": "^2.0.0",
     "@types/cors": "^2.8.4",
     "@types/express": "^4.16.0",

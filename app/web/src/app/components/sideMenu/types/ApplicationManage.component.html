@@ -14,7 +14,9 @@
       <li nz-menu-item [nzSelected]="item.tabs.appStatus" (click)="goPath(item, 'appStatus')">
         <a routerLinkActive="true" routerLink="application/appStatus">状态跟踪</a>
       </li>
-      <li nz-menu-item [nzSelected]="item.tabs.traceManage">链路跟踪</li>
+      <li nz-menu-item [nzSelected]="item.tabs.traceManage" (click)="goPath(item, 'traceManage')">
+        <a routerLinkActive="true" routerLink="application/traceManage">链路跟踪</a>
+      </li>
       <li nz-menu-item [nzSelected]="item.tabs.remoteDebug">远程调试</li>
     </ul>
   </li>

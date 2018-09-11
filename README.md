@@ -50,12 +50,9 @@ err_${app}_${md5}: {
     "times": [num, num, num]
 }
 
-http_${app}_${time}: {
-    "${url}_${method}": {
-        count: ${count},
-        method: ${method},
-        "average": "10.11"
-    }
+http_${app}_${time}_${url}_${method}: {
+    count: ${count},
+    "useTimes": []
 }
 
 http_${app}_${url}_${method}: [
@@ -63,6 +60,21 @@ http_${app}_${url}_${method}: [
     {startTime: 1536594532903, useTime: 33, method: 'GET'},
 ]
 
+version_${package_name}: {
+    "1.1.0": ["app_name", "app_name"],
+    "1.2.0": ["app_name", "app_name"]
+}
+
+```
+
+## 项目运行办法
+```text
+1.npm install 
+2.如果是写web，则cd app/web,然后npm i(如果那边没有安装过依赖)，然后npm run start(同时需要node mock.js启动)
+3.如果写server，则nodemon -r ts-node/register app/src/index.ts, 这边代码里面有一个redis，所以需要本地用docker搭一个
+redis
+4.前后端联调:
+后端项目运行，然后前端那边用npm run remote，会将请求转发到对应的后端来。
 ```
 
 ## 当前规划

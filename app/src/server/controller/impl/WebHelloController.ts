@@ -25,7 +25,10 @@ export class WebHelloController implements IWebController{
         console.log(`useTime: ${new Date().getTime() - startTime}ms`);
         let result = {
             code: 200,
-            data: item
+            data: {
+                currentTime: new Date().getTime(),
+                processInfo: item
+            }
         };
         res.send(result);
 

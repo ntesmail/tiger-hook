@@ -6,6 +6,6 @@ export class ErrorController implements IWebController{
 
     processResult(req: Request, res: Response, next: NextFunction) {
         console.error("error");
-        return res.send("hello world");
+        res.send("hello world");
     }
 }

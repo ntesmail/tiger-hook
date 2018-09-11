@@ -23,34 +23,30 @@ export class HttpServerHook implements IHook{
 
     hook(): void {
         let self = this;
-        shimmer.wrap(http, 'createServer', (original:(requestListener?: (request: IncomingMessage, response: ServerResponse) => void)=>Server) => {
-            return function wrapCreateServer(this: any, requestListener?: (request: IncomingMessage, response: ServerResponse)=> void){
+        shimmer.wrap(http, 'createServer', (original:(requestListener?: (request: any, response: any) => void)=>Server) => {
+            return function wrapCreateServer(this: any, requestListener?: (request: any, response: any)=> void){
                 if(requestListener){
-                    const listener = function Listener(request: IncomingMessage, response: ServerResponse){
+                    const listener = function Listener(request: any, response: any){
                         let startTime = new Date().getTime();
-                        console.log(request.method, request.url);
                         let reqParams = {
                             startTime: startTime,
                             useTime: 0,
                             method: request.method,
                             url: request.url
                         };
-                        requestListener(request, response);
                         function onFinishedFactory(eventName: string){
                             return function onFinished(){
                                 response.removeListener("finish", onFinished);
                                 request.removeListener("error", onFinished);
                                 request.removeListener("close", onFinished);
-                                console.log(`eventName=${eventName} useTime= ${new Date().getTime() - startTime}ms`);
                                 reqParams.useTime = new Date().getTime() - startTime;
-                                console.log(reqParams);
                                 self.axonClient.send('http', reqParams);
                             }
                         }
                         response.once('finish', onFinishedFactory('finish'));
                         request.once('error', onFinishedFactory('error'));
                         request.once('close', onFinishedFactory('close'));
-                        return;
+                        return requestListener(request, response);
                     };
                     // @ts-ignore
                     return original.call(this, listener);

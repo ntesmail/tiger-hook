@@ -1,8 +1,11 @@
+import {HomeController} from "./controller/impl/HomeController";
+
 const express = require('express');
 import {IWebController} from "./controller/IWebController";
 import {WebHelloController} from "./controller/impl/WebHelloController";
 import {ErrorController} from "./controller/impl/ErrorController";
 import {PathParams} from "express-serve-static-core";
+import {HttpRequestInfosController} from "./controller/impl/HttpRequestInfosController";
 
 export class AppWebServer{
     static __instance: AppWebServer;
@@ -22,14 +25,14 @@ export class AppWebServer{
 
     constructor(){
         this.app = express();
-        this.controllerNames = [WebHelloController, ErrorController];
+        this.controllerNames = [WebHelloController, ErrorController, HttpRequestInfosController, HomeController];
         this.controllers = new Map<String, IWebController>();
     }
 
     init(){
         this.controllerNames.map(controllerName=>{
             const webController: IWebController = <IWebController>new controllerName();
-            this.app.use(<PathParams>webController.prefix, webController.processResult.bind(webController));
+            this.app.get(<PathParams>webController.prefix, webController.processResult.bind(webController));
             this.controllers.set(webController.prefix, webController);
         });
         this.app.listen(8002, (err: any)=>{

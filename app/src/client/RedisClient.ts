@@ -22,13 +22,6 @@ export class AppRedisClient implements IClient{
         });
     }
 
-    init(){
-        this.client = redis.createClient({
-            host: '127.0.0.1',
-            port: 32768
-        });
-    }
-
     getClient(){
         return this.client;
     }

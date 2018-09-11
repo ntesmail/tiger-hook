@@ -1,0 +1,11 @@
+version: "3"
+services:
+  redis:
+    image: redis
+    ports:
+      - "6379:6379"
+  tiger-hook-web:
+    image: tiger-hook-web:latest
+    ports:
+      - "8002:8002"
+      - "4000:4000"

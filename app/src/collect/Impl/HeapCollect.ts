@@ -18,7 +18,7 @@ export class HeapCollect implements ICollect{
             if(err){
                 return;
             }
-            let currentValue: any = {}
+            let currentValue: any = {};
             if(result != null){
                 currentValue = JSON.parse(result);
             }

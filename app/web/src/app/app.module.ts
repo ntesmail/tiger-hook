@@ -14,11 +14,11 @@ import {ApplicationSideMenuComponent} from "./components/sideMenu/types/Applicat
 import {UnWrapDirective} from "./Directives/UnWrap.directive";
 import { NgxEchartsModule } from 'ngx-echarts';
 import {ApplicationManageComponent} from "./components/sideMenu/types/ApplicationManage.component";
-import {MemoryManageComponent} from "./page/memoryManage/memoryManage.component";
 import {MemoryManageModule} from "./page/memoryManage/memoryManage.module";
 import { RouterModule } from "@angular/router";
 import {ErrorMessageManageModule} from "./page/errorMessage/errorMessageManage.module";
 import {AppCommonModule} from "./common/common.module";
+import {TraceManageModule} from "./page/traceManage/traceManage.module";
 
 registerLocaleData(zh);
 
@@ -30,12 +30,12 @@ registerLocaleData(zh);
     ApplicationSideMenuComponent,
     UnWrapDirective,
     ApplicationManageComponent,
-    MemoryManageComponent
   ],
   imports: [
     AppCommonModule,
     MemoryManageModule,
     ErrorMessageManageModule,
+    TraceManageModule,
     RouterModule.forRoot([], {useHash: true})
   ],
   providers: [{ provide: NZ_I18N, useValue: zh_CN }],
