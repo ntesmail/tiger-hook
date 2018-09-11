@@ -3,6 +3,7 @@ import {NextFunction, Request, Response} from "express";
 import {utils} from "../../../utils/utils";
 import {RedisClient} from "redis";
 import {AppRedisClient} from "../../../client/RedisClient";
+import {HttpUtils} from "../../../utils/HttpUtils";
 
 export class ErrorMessageController implements IWebController{
     prefix: String = '/xhr/application/getErrorMessage.do';
@@ -17,6 +18,9 @@ export class ErrorMessageController implements IWebController{
         let {time} = utils.getTime({time: new Date().getTime()});
         console.log("error_" + time);
         this.redisClient.get("error_" + time , (err, result)=> {
+            if(err){
+                return res.send(HttpUtils.success({}))
+            }
             let errors = JSON.parse(result);
             let keys = Object.keys(errors);
             console.log(keys);

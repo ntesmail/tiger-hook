@@ -21,7 +21,7 @@ export class ErrorCollect implements ICollect{
             stack: data.stack
         };
         let md5 = utility.md5(tmp);
-        this.redisClient.get("error_" + time, (err, result)=>{
+        this.redisClient.get("error_" + data.appName + "_" + time, (err, result)=>{
             if(err){
                 console.log(err);
                 return;
@@ -34,6 +34,9 @@ export class ErrorCollect implements ICollect{
                 currentValue[md5].count++;
                 currentValue[md5].lastTime = data.time
             }else{
+                if(typeof data.message != 'string'){
+                    data.message = JSON.stringify(data.message);
+                }
                 currentValue[md5] = {
                     message: data.message,
                     stack: data.stack,
@@ -41,9 +44,9 @@ export class ErrorCollect implements ICollect{
                     lastTime: data.time
                 };
             }
-            this.redisClient.set("error_" + time, JSON.stringify(currentValue));
+            this.redisClient.set("error_" +  data.appName + "_" + time, JSON.stringify(currentValue));
         });
-        this.redisClient.get("error_" + md5, (err, result)=>{
+        this.redisClient.get("error_" + data.appName + "_" + md5, (err, result)=>{
             if(err){
                 return;
             }
@@ -60,7 +63,7 @@ export class ErrorCollect implements ICollect{
                 }
             }
             currentValue.times.push(data.time);
-            this.redisClient.set("error_" + md5, JSON.stringify(currentValue));
+            this.redisClient.set("error_" +  data.appName + "_" + md5, JSON.stringify(currentValue));
         });
         fn(null, 3);
     }

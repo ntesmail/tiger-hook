@@ -3,6 +3,7 @@ import {ErrorCollect} from "./Impl/ErrorCollect";
 import {HeapCollect} from "./Impl/HeapCollect";
 import {AxonRpcServer} from "../server/AxonRpcServer";
 import {RequestCollect} from "./Impl/RequestCollect";
+import {AppCollect} from "./Impl/AppCollect";
 
 export class CollectManager{
     collects: any[];
@@ -20,7 +21,7 @@ export class CollectManager{
     }
 
     constructor(){
-        this.collects = [ErrorCollect, HeapCollect, RequestCollect];
+        this.collects = [ErrorCollect, HeapCollect, RequestCollect, AppCollect];
         this.axonRpcServer = AxonRpcServer.getInstance();
     }
 

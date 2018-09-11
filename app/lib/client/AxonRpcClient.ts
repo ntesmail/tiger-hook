@@ -1,5 +1,6 @@
 import * as axon from "axon";
 import {Socket} from "axon";
+import {HookAppConfig} from "../hook/HookAppConfig";
 var rpc = require('axon-rpc');
 
 export class AxonRpcClient{
@@ -24,6 +25,7 @@ export class AxonRpcClient{
 
     send(type: string, params: any){
         params["time"] = new Date().getTime();
+        params["appName"] = HookAppConfig.getInstance().appName;
         this.client.call(type, params, (res: any)=>{
             // console.log(res)
         });

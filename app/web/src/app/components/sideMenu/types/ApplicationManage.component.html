@@ -1,6 +1,6 @@
 <ul nz-menu [nzMode]="'inline'" style="height:100%" app-unwrap="">
   <li nz-submenu *ngFor="let item of applications" [nzOpen]="item.open">
-    <span title><i class="anticon anticon-{{item.icon}}"></i>{{item.name}}</span>
+    <span title><i class="anticon anticon-laptop"></i>{{item.name}}</span>
     <ul>
       <li nz-menu-item [nzSelected]="item.tabs.dashboard" (click)="goPath(item, 'dashboard')">
         <a routerLinkActive="true" routerLink="application/dashboard">Dashboard</a>

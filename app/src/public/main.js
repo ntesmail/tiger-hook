@@ -429,7 +429,7 @@ var SideMenuComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ul nz-menu [nzMode]=\"'inline'\" style=\"height:100%\" app-unwrap=\"\">\n  <li nz-submenu *ngFor=\"let item of applications\" [nzOpen]=\"item.open\">\n    <span title><i class=\"anticon anticon-{{item.icon}}\"></i>{{item.name}}</span>\n    <ul>\n      <li nz-menu-item [nzSelected]=\"item.tabs.dashboard\" (click)=\"goPath(item, 'dashboard')\">\n        <a routerLinkActive=\"true\" routerLink=\"application/dashboard\">Dashboard</a>\n      </li>\n      <li nz-menu-item [nzSelected]=\"item.tabs.alertManage\">告警配置</li>\n      <li nz-menu-item [nzSelected]=\"item.tabs.logAnalyze\">日志分析</li>\n      <li nz-menu-item [nzSelected]=\"item.tabs.appStructure\">服务结构</li>\n      <li nz-menu-item [nzSelected]=\"item.tabs.errorMessage\" (click)=\"goPath(item, 'errorMessage')\">\n        <a routerLinkActive=\"true\" routerLink=\"application/errorMessage\">错误信息</a>\n      </li>\n      <li nz-menu-item [nzSelected]=\"item.tabs.appStatus\" (click)=\"goPath(item, 'appStatus')\">\n        <a routerLinkActive=\"true\" routerLink=\"application/appStatus\">状态跟踪</a>\n      </li>\n      <li nz-menu-item [nzSelected]=\"item.tabs.traceManage\" (click)=\"goPath(item, 'traceManage')\">\n        <a routerLinkActive=\"true\" routerLink=\"application/traceManage\">链路跟踪</a>\n      </li>\n      <li nz-menu-item [nzSelected]=\"item.tabs.remoteDebug\">远程调试</li>\n    </ul>\n  </li>\n</ul>\n"
+module.exports = "<ul nz-menu [nzMode]=\"'inline'\" style=\"height:100%\" app-unwrap=\"\">\n  <li nz-submenu *ngFor=\"let item of applications\" [nzOpen]=\"item.open\">\n    <span title><i class=\"anticon anticon-laptop\"></i>{{item.name}}</span>\n    <ul>\n      <li nz-menu-item [nzSelected]=\"item.tabs.dashboard\" (click)=\"goPath(item, 'dashboard')\">\n        <a routerLinkActive=\"true\" routerLink=\"application/dashboard\">Dashboard</a>\n      </li>\n      <li nz-menu-item [nzSelected]=\"item.tabs.alertManage\">告警配置</li>\n      <li nz-menu-item [nzSelected]=\"item.tabs.logAnalyze\">日志分析</li>\n      <li nz-menu-item [nzSelected]=\"item.tabs.appStructure\">服务结构</li>\n      <li nz-menu-item [nzSelected]=\"item.tabs.errorMessage\" (click)=\"goPath(item, 'errorMessage')\">\n        <a routerLinkActive=\"true\" routerLink=\"application/errorMessage\">错误信息</a>\n      </li>\n      <li nz-menu-item [nzSelected]=\"item.tabs.appStatus\" (click)=\"goPath(item, 'appStatus')\">\n        <a routerLinkActive=\"true\" routerLink=\"application/appStatus\">状态跟踪</a>\n      </li>\n      <li nz-menu-item [nzSelected]=\"item.tabs.traceManage\" (click)=\"goPath(item, 'traceManage')\">\n        <a routerLinkActive=\"true\" routerLink=\"application/traceManage\">链路跟踪</a>\n      </li>\n      <li nz-menu-item [nzSelected]=\"item.tabs.remoteDebug\">远程调试</li>\n    </ul>\n  </li>\n</ul>\n"
 
 /***/ }),
 
@@ -446,6 +446,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -455,84 +456,124 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (undefined && undefined.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [0, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+
 
 
 
 var ApplicationManageComponent = /** @class */ (function () {
-    function ApplicationManageComponent(location, router) {
+    function ApplicationManageComponent(location, router, httpClient) {
         this.location = location;
         this.router = router;
-        this.applications = [
-            {
-                name: 'tiger-ape',
-                icon: 'user',
-                open: true,
-                tabs: {
-                    dashboard: false,
-                    alertManage: false,
-                    logAnalyze: false,
-                    appStructure: false,
-                    errorMessage: false,
-                    appStatus: false,
-                    traceManage: false,
-                    remoteDebug: false
-                }
-            }, {
-                name: 'shark-wiki',
-                icon: 'laptop',
-                open: true,
-                tabs: {
-                    dashboard: false,
-                    alertManage: false,
-                    logAnalyze: false,
-                    appStructure: false,
-                    errorMessage: false,
-                    appStatus: false,
-                    traceManage: false,
-                    remoteDebug: false
-                }
-            }, {
-                name: 'shark-icac',
-                icon: 'notification',
-                open: true,
-                tabs: {
-                    dashboard: false,
-                    alertManage: false,
-                    logAnalyze: false,
-                    appStructure: false,
-                    errorMessage: false,
-                    appStatus: false,
-                    traceManage: false,
-                    remoteDebug: false
-                }
-            }
-        ];
+        this.httpClient = httpClient;
+        this.applications = [];
     }
+    /**
+     * description: 获取应用列表
+     * author: 金炳<hzjinbing@163.com>
+     */
+    ApplicationManageComponent.prototype.getApplicationList = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var _this = this;
+            return __generator(this, function (_a) {
+                return [2 /*return*/, new Promise(function (resolve, reject) {
+                        _this.httpClient.get("/xhr/application/getAppList.do").subscribe(function (data) {
+                            resolve(data.data);
+                            console.log(data);
+                        });
+                    })];
+            });
+        });
+    };
     ApplicationManageComponent.prototype.initSideNav = function () {
-        var result = this.location.path().split("?");
-        if (result.length < 2) {
-            return;
-        }
-        var paths = this.location.path().split("?")[0].split("/");
-        var allQueryParams = result[1].split('&');
-        var _loop_1 = function (i) {
-            if (allQueryParams[i].split('=')[0] == 'app') {
-                console.log(allQueryParams[i].split('=')[1]);
-                var application = this_1.applications.filter(function (application) {
-                    if (application.name == allQueryParams[i].split('=')[1]) {
-                        return true;
-                    }
-                });
-                application[0].tabs[paths[2]] = true;
-                return "break";
-            }
-        };
-        var this_1 = this;
-        for (var i = 0; i < allQueryParams.length; i++) {
-            var state_1 = _loop_1(i);
-            if (state_1 === "break")
-                break;
-        }
+        return __awaiter(this, void 0, void 0, function () {
+            var applications, result, paths, allQueryParams, _loop_1, this_1, i, state_1;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.getApplicationList()];
+                    case 1:
+                        applications = _a.sent();
+                        this.applications = applications.map(function (item) {
+                            return {
+                                name: item,
+                                open: true,
+                                tabs: {
+                                    dashboard: false,
+                                    alertManage: false,
+                                    logAnalyze: false,
+                                    appStructure: false,
+                                    errorMessage: false,
+                                    appStatus: false,
+                                    traceManage: false,
+                                    remoteDebug: false
+                                }
+                            };
+                        });
+                        result = this.location.path().split("?");
+                        if (result.length < 2) {
+                            return [2 /*return*/];
+                        }
+                        paths = this.location.path().split("?")[0].split("/");
+                        console.log(paths);
+                        allQueryParams = result[1].split('&');
+                        _loop_1 = function (i) {
+                            if (allQueryParams[i].split('=')[0] == 'app') {
+                                console.log(allQueryParams[i].split('=')[1]);
+                                var application = this_1.applications.filter(function (application) {
+                                    if (application.name == allQueryParams[i].split('=')[1]) {
+                                        return true;
+                                    }
+                                });
+                                if (application.length > 0) {
+                                    application[0].tabs[paths[2]] = true;
+                                    return "break";
+                                }
+                            }
+                        };
+                        this_1 = this;
+                        for (i = 0; i < allQueryParams.length; i++) {
+                            state_1 = _loop_1(i);
+                            if (state_1 === "break")
+                                break;
+                        }
+                        return [2 /*return*/];
+                }
+            });
+        });
     };
     ApplicationManageComponent.prototype.ngOnInit = function () {
         this.initSideNav();
@@ -558,7 +599,8 @@ var ApplicationManageComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./ApplicationManage.component.html */ "./src/app/components/sideMenu/types/ApplicationManage.component.html")
         }),
         __metadata("design:paramtypes", [_angular_common__WEBPACK_IMPORTED_MODULE_1__["Location"],
-            _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
+            _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"],
+            _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"]])
     ], ApplicationManageComponent);
     return ApplicationManageComponent;
 }());
@@ -619,7 +661,7 @@ var ApplicationSideMenuComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nz-content>\n  <div nz-row class=\"ant-advanced-search-form\">\n    <div nz-col [nzSpan]=\"24\">\n      <h1>错误信息</h1>\n    </div>\n    <div nz-col [nzSpan]=\"8\">\n      <span>服务名: </span>\n      <span>tiger-ape</span>\n    </div>\n    <div nz-col [nzSpan]=\"8\">\n      <span>节点数量: </span>\n      <span>8</span>\n    </div>\n  </div>\n  <div style=\"margin-top: 20px;\">\n    <div style=\"float: left; width: 200px; height: 200px; border:1px solid #ccc\">\n      <ul>\n        <li>10.10.1.1</li>\n        <li>10.10.10.2</li>\n      </ul>\n    </div>\n    <div style=\"margin-left: 220px;\">\n      <nz-table class=\"m-table--unclear\" [nzData]=\"errorMessages\" #errorMessagesTable>\n        <thead>\n          <tr>\n            <th>错误信息</th>\n            <th>错误堆栈</th>\n            <th>出现次数</th>\n            <th>上一次出现的时间</th>\n          </tr>\n        </thead>\n        <tbody>\n          <tr *ngFor=\"let errorMessage of errorMessagesTable.data\">\n            <td>{{errorMessage.content.message}}</td>\n            <td [innerHtml]=\"errorMessage.content.stack\"></td>\n            <td>{{errorMessage.content.count}}</td>\n            <td>{{errorMessage.content.lastTime | date: 'yyyy-MM-dd HH:mm:ss'}}</td>\n          </tr>\n        </tbody>\n      </nz-table>\n    </div>\n  </div>\n</nz-content>\n"
+module.exports = "<nz-content>\n  <div nz-row class=\"ant-advanced-search-form\">\n    <div nz-col [nzSpan]=\"24\">\n      <h1>错误信息</h1>\n    </div>\n    <div nz-col [nzSpan]=\"8\">\n      <span>服务名: </span>\n      <span>tiger-ape</span>\n    </div>\n    <div nz-col [nzSpan]=\"8\">\n      <span>节点数量: </span>\n      <span>8</span>\n    </div>\n  </div>\n  <div style=\"margin-top: 20px;\">\n    <div style=\"float: left; width: 200px; height: 200px; border:1px solid #ccc\">\n      <ul>\n        <li>10.10.1.1</li>\n        <li>10.10.10.2</li>\n      </ul>\n    </div>\n    <div style=\"margin-left: 220px;\">\n      <nz-table class=\"m-table--unclear\" [nzData]=\"errorMessages\" #errorMessagesTable>\n        <thead>\n          <tr>\n            <th>错误信息</th>\n            <th>错误堆栈</th>\n            <th>出现次数</th>\n            <th>上一次出现的时间</th>\n          </tr>\n        </thead>\n        <tbody>\n          <tr *ngFor=\"let errorMessage of errorMessagesTable.data\">\n            <td [innerHtml]=\"errorMessage.content.message\"></td>\n            <td [innerHtml]=\"errorMessage.content.stack\"></td>\n            <td>{{errorMessage.content.count}}</td>\n            <td>{{errorMessage.content.lastTime | date: 'yyyy-MM-dd HH:mm:ss'}}</td>\n          </tr>\n        </tbody>\n      </nz-table>\n    </div>\n  </div>\n</nz-content>\n"
 
 /***/ }),
 
@@ -654,10 +696,11 @@ var ErrorMessageManageComponent = /** @class */ (function () {
     ErrorMessageManageComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.httpClient.get("/xhr/application/getErrorMessage.do", {}).subscribe(function (data) {
-            _this.errorMessages = data.data.map(function (item) {
-                var errorMessage = JSON.parse(item);
-                var md5 = Object.keys(errorMessage)[0];
-                var content = errorMessage[md5];
+            var keys = Object.keys(data.data);
+            _this.errorMessages = keys.map(function (item) {
+                var md5 = item;
+                var content = data.data[item];
+                content.message = content.message.replace(/\n/g, '<br/>');
                 content.stack = content.stack.replace(/\n/g, '<br/>');
                 return {
                     md5: md5,
