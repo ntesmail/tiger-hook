@@ -974,7 +974,7 @@ var MemoryManageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ul>\n  <li *ngFor=\"let item of httpRequestInfos\" style=\"border: 1px solid #ccc;margin-bottom: 20px;padding: 5px; border-radius: 4px;\">\n    <div>\n      <p>url: {{item.url}} 【{{item.method}}】平均耗时: {{item.averageUseTime}}ms 累计请求数量: {{item.count}}次</p>\n      <nz-progress [nzPercent]=\"item.percent\" nzStatus=\"active\"></nz-progress>\n    </div>\n  </li>\n</ul>\n"
+module.exports = "<ul>\n  <li *ngFor=\"let item of httpRequestInfos\" class=\"m-httpRequestInfo\">\n    <div>\n      <p>url: {{item.url}} 【{{item.method}}】平均耗时: {{item.averageUseTime}}ms 累计请求数量: {{item.count}}次</p>\n      <nz-progress [nzPercent]=\"item.percent\" nzStatus=\"active\"></nz-progress>\n    </div>\n  </li>\n</ul>\n"
 
 /***/ }),
 
@@ -1016,7 +1016,7 @@ var AppRequestDashboardComponent = /** @class */ (function () {
                 return currentValue + item.count;
             }, 0);
             data.data.map(function (item) {
-                item.percent = item.count / counts * 100;
+                item.percent = (item.count / counts * 100).toFixed(2);
             });
             self.httpRequestInfos = data.data.sort(function (a, b) {
                 return b.count > a.count;
@@ -1026,7 +1026,8 @@ var AppRequestDashboardComponent = /** @class */ (function () {
     AppRequestDashboardComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-request-dashboard',
-            template: __webpack_require__(/*! ./appRequestDashboard.component.html */ "./src/app/page/traceManage/components/appRequestDashboard.component.html")
+            template: __webpack_require__(/*! ./appRequestDashboard.component.html */ "./src/app/page/traceManage/components/appRequestDashboard.component.html"),
+            styles: ["\n    .m-httpRequestInfo{\n      padding: 20px;\n      border: 1px solid #ccc;\n      margin-bottom: 20px;\n      padding: 5px;\n      border-radius: 4px;\n    }\n  "]
         }),
         __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]])
     ], AppRequestDashboardComponent);

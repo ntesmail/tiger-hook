@@ -10,12 +10,12 @@ export class ErrorMessageManageComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.httpClient.get("/xhr/application/getErrorMessage.do", {}).subscribe((data: any)=>{
-      this.errorMessages = data.data.map((item: string)=>{
-        let errorMessage = JSON.parse(item);
-        let md5 = Object.keys(errorMessage)[0];
-
-        let content = errorMessage[md5];
+    this.httpClient.get("/xhr/application/getErrorMessage.do", {}).subscribe((data: any)=> {
+      let keys = Object.keys(data.data);
+      this.errorMessages = keys.map(item => {
+        let md5 = item;
+        let content = data.data[item];
+        content.message = content.message.replace(/\n/g, '<br/>');
         content.stack = content.stack.replace(/\n/g, '<br/>');
         return {
           md5,

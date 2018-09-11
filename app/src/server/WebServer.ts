@@ -6,6 +6,7 @@ import {WebHelloController} from "./controller/impl/WebHelloController";
 import {ErrorController} from "./controller/impl/ErrorController";
 import {PathParams} from "express-serve-static-core";
 import {HttpRequestInfosController} from "./controller/impl/HttpRequestInfosController";
+import {ErrorMessageController} from "./controller/impl/ErrorMessageController";
 
 export class AppWebServer{
     static __instance: AppWebServer;
@@ -25,7 +26,7 @@ export class AppWebServer{
 
     constructor(){
         this.app = express();
-        this.controllerNames = [WebHelloController, ErrorController, HttpRequestInfosController, HomeController];
+        this.controllerNames = [WebHelloController, ErrorController, HttpRequestInfosController, ErrorMessageController, HomeController];
         this.controllers = new Map<String, IWebController>();
     }
 

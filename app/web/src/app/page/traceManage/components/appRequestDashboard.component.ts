@@ -11,7 +11,16 @@ interface HttpRequestInfo{
 
 @Component({
   selector: 'app-request-dashboard',
-  templateUrl: './appRequestDashboard.component.html'
+  templateUrl: './appRequestDashboard.component.html',
+  styles: [`
+    .m-httpRequestInfo{
+      padding: 20px;
+      border: 1px solid #ccc;
+      margin-bottom: 20px;
+      padding: 5px;
+      border-radius: 4px;
+    }
+  `]
 })
 export class AppRequestDashboardComponent implements OnInit{
   httpRequestInfos: HttpRequestInfo[] = [];
@@ -32,7 +41,7 @@ export class AppRequestDashboardComponent implements OnInit{
       }, 0);
 
       data.data.map(item=>{
-        item.percent = item.count / counts * 100;
+        item.percent = (item.count / counts * 100).toFixed(2);
       });
 
       self.httpRequestInfos = data.data.sort((a: HttpRequestInfo, b:HttpRequestInfo)=>{

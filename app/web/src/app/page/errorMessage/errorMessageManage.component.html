@@ -31,7 +31,7 @@
         </thead>
         <tbody>
           <tr *ngFor="let errorMessage of errorMessagesTable.data">
-            <td>{{errorMessage.content.message}}</td>
+            <td [innerHtml]="errorMessage.content.message"></td>
             <td [innerHtml]="errorMessage.content.stack"></td>
             <td>{{errorMessage.content.count}}</td>
             <td>{{errorMessage.content.lastTime | date: 'yyyy-MM-dd HH:mm:ss'}}</td>
