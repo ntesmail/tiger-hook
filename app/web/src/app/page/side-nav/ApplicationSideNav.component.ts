@@ -10,8 +10,6 @@ import {ApplicationService} from "../../common/Application.service";
 })
 export class ApplicationSideComponent implements OnInit{
   applications: any[] = [];
-  @Input() app: String;
-  @Output() appChange: EventEmitter<String> = new EventEmitter<String>();
 
   constructor(
     private location: Location,

@@ -5,18 +5,10 @@ import {AppLocationService} from "../common/AppLocation.service";
 @Component({
   templateUrl: './applicationManage.component.html'
 })
-export class ApplicationManageComponent implements OnInit{
-  appName: String = '';
+export class ApplicationManageComponent{
   constructor(
     private location: Location,
     private appLocationService: AppLocationService
   ){
-  }
-
-  ngOnInit(): void {
-    let {queryParams} = this.appLocationService.generateUrl();
-    if(queryParams["app"]){
-      this.appName = queryParams["app"];
-    }
   }
 }

@@ -3,6 +3,7 @@ import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {HttpClient} from "@angular/common/http";
 import * as echarts from 'echarts';
 import EChartOption = echarts.EChartOption;
+import {AppLocationService} from "../../common/AppLocation.service";
 
 @Component({
   selector: 'app-memory-manage',
@@ -38,13 +39,20 @@ export class MemoryManageComponent implements OnInit{
 
   loading: boolean = false;
 
-  constructor(private http: HttpClient, private fb: FormBuilder){
+  constructor(
+    private http: HttpClient,
+    private fb: FormBuilder,
+    private appLocation: AppLocationService
+  ){
   }
 
   initData(){
     this.loading = true;
+    let params = {
+      "app": this.appLocation.generateUrl().queryParams["app"]
+    };
     setTimeout(()=>{
-      this.http.get("/xhr/application/getProcessInfo.do").subscribe((result: any)=>{
+      this.http.get("/xhr/application/getProcessInfo.do", {params}).subscribe((result: any)=>{
         let xAxis = {};
         let currentTime = new Date(result.data.currentTime);
         let time: number = parseInt("" + (new Date(result.data.currentTime).getTime() - new Date(currentTime.getFullYear(), currentTime.getMonth(), currentTime.getDate()).getTime())/5/1000);

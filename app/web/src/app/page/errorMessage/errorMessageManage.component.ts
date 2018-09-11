@@ -1,16 +1,23 @@
 import {Component, OnInit} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
+import {AppLocationService} from "../../common/AppLocation.service";
 
 @Component({
   templateUrl: './errorMessageManage.component.html'
 })
 export class ErrorMessageManageComponent implements OnInit{
-  errorMessages: any[] = []
-  constructor(private httpClient: HttpClient){
+  errorMessages: any[] = [];
+  constructor(
+    private httpClient: HttpClient,
+    private appLocation: AppLocationService
+  ){
   }
 
   ngOnInit(): void {
-    this.httpClient.get("/xhr/application/getErrorMessage.do", {}).subscribe((data: any)=> {
+    let params = {
+      "app": this.appLocation.generateUrl().queryParams["app"]
+    };
+    this.httpClient.get("/xhr/application/getErrorMessage.do", {params}).subscribe((data: any)=> {
       let keys = Object.keys(data.data);
       this.errorMessages = keys.map(item => {
         let md5 = item;
