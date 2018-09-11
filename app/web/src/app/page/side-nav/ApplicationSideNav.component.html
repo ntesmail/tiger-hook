@@ -3,19 +3,19 @@
     <span title><i class="anticon anticon-laptop"></i>{{item.name}}</span>
     <ul>
       <li nz-menu-item [nzSelected]="item.tabs.dashboard" (click)="goPath(item, 'dashboard')">
-        <a routerLinkActive="true" routerLink="application/dashboard">Dashboard</a>
+        <a routerLinkActive="true" routerLink="dashboard" [queryParams]="{app: item.name}">Dashboard</a>
       </li>
       <li nz-menu-item [nzSelected]="item.tabs.alertManage">告警配置</li>
       <li nz-menu-item [nzSelected]="item.tabs.logAnalyze">日志分析</li>
       <li nz-menu-item [nzSelected]="item.tabs.appStructure">服务结构</li>
       <li nz-menu-item [nzSelected]="item.tabs.errorMessage" (click)="goPath(item, 'errorMessage')">
-        <a routerLinkActive="true" routerLink="application/errorMessage">错误信息</a>
+        <a routerLinkActive="true" routerLink="errorMessage" [queryParams]="{app: item.name}">错误信息</a>
       </li>
       <li nz-menu-item [nzSelected]="item.tabs.appStatus" (click)="goPath(item, 'appStatus')">
-        <a routerLinkActive="true" routerLink="application/appStatus">状态跟踪</a>
+        <a routerLinkActive="true" routerLink="appStatus" [queryParams]="{app: item.name}">状态跟踪</a>
       </li>
       <li nz-menu-item [nzSelected]="item.tabs.traceManage" (click)="goPath(item, 'traceManage')">
-        <a routerLinkActive="true" routerLink="application/traceManage">链路跟踪</a>
+        <a routerLinkActive="true" routerLink="traceManage" [queryParams]="{app: item.name}">链路跟踪</a>
       </li>
       <li nz-menu-item [nzSelected]="item.tabs.remoteDebug">远程调试</li>
     </ul>

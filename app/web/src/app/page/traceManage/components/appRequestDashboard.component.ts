@@ -1,5 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
+import {ApplicationService} from "../../../common/Application.service";
+import {AppLocationService} from "../../../common/AppLocation.service";
 
 interface HttpRequestInfo{
   url: string,
@@ -25,7 +27,10 @@ interface HttpRequestInfo{
 export class AppRequestDashboardComponent implements OnInit{
   httpRequestInfos: HttpRequestInfo[] = [];
 
-  constructor(private httpClient: HttpClient){
+  constructor(
+    private httpClient: HttpClient,
+    private appLocation: AppLocationService
+  ){
 
   }
 
@@ -35,7 +40,10 @@ export class AppRequestDashboardComponent implements OnInit{
 
   initHttpRequqestInfos(){
     let self = this;
-    this.httpClient.get("/xhr/application/getHttpRequestInfos.do").subscribe((data: any)=>{
+    let params = {
+      "app": this.appLocation.generateUrl().queryParams["app"]
+    };
+    this.httpClient.get("/xhr/application/getHttpRequestInfos.do", {params: params}).subscribe((data: any)=>{
       let counts = data.data.reduce((currentValue: number, item: HttpRequestInfo)=>{
         return currentValue + item.count;
       }, 0);

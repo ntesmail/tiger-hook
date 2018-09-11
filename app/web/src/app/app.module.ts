@@ -2,23 +2,19 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
-import { NgZorroAntdModule, NZ_I18N, zh_CN } from 'ng-zorro-antd';
+import { NZ_I18N, zh_CN } from 'ng-zorro-antd';
 import { registerLocaleData } from '@angular/common';
 import zh from '@angular/common/locales/zh';
 import {HeaderMenuComponent} from "./components/HeaderMenu.component";
 import {SideMenuComponent} from "./components/sideMenu/SideMenu.component";
 import {ApplicationSideMenuComponent} from "./components/sideMenu/types/ApplicationSideMenu.component";
 import {UnWrapDirective} from "./Directives/UnWrap.directive";
-import { NgxEchartsModule } from 'ngx-echarts';
-import {ApplicationManageComponent} from "./components/sideMenu/types/ApplicationManage.component";
-import {MemoryManageModule} from "./page/memoryManage/memoryManage.module";
 import { RouterModule } from "@angular/router";
 import {ErrorMessageManageModule} from "./page/errorMessage/errorMessageManage.module";
 import {AppCommonModule} from "./common/common.module";
 import {TraceManageModule} from "./page/traceManage/traceManage.module";
+import {ApplicationManageModule} from "./page/applicationManage.module";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 registerLocaleData(zh);
 
@@ -29,13 +25,14 @@ registerLocaleData(zh);
     SideMenuComponent,
     ApplicationSideMenuComponent,
     UnWrapDirective,
-    ApplicationManageComponent,
   ],
   imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
     AppCommonModule,
-    MemoryManageModule,
-    ErrorMessageManageModule,
-    TraceManageModule,
+    // ErrorMessageManageModule,
+    // TraceManageModule,
+    ApplicationManageModule,
     RouterModule.forRoot([], {useHash: true})
   ],
   providers: [{ provide: NZ_I18N, useValue: zh_CN }],

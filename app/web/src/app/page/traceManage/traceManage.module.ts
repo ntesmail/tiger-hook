@@ -5,7 +5,7 @@ import {TraceManageComponent} from "./traceManage.component";
 import {AppRequestDashboardComponent} from "./components/appRequestDashboard.component";
 
 const routers: Route[] = [{
-  path: 'application/traceManage',
+  path: '',
   component: TraceManageComponent
 }];
 

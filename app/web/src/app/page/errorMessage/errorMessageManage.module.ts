@@ -4,7 +4,7 @@ import {ErrorMessageManageComponent} from "./errorMessageManage.component";
 import {AppCommonModule} from "../../common/common.module";
 
 let routers: Route[] = [{
-  path: 'application/errorMessage',
+  path: '',
   component: ErrorMessageManageComponent
 }];
 

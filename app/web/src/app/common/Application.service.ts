@@ -1,20 +1,14 @@
-import {Component, OnInit} from "@angular/core";
-import {Location} from "@angular/common";
-import {Router} from "@angular/router";
+import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
+import {Location} from "@angular/common";
 
-@Component({
-  selector: 'app-application-manage',
-  templateUrl: './ApplicationManage.component.html'
-})
-export class ApplicationManageComponent implements OnInit{
+@Injectable()
+export class ApplicationService{
   applications: any[] = [];
-
   constructor(
-    private location: Location,
-    private router: Router,
-    private httpClient: HttpClient
-  ){
+    private httpClient: HttpClient,
+    private location: Location
+  ) {
   }
 
   /**
@@ -30,7 +24,11 @@ export class ApplicationManageComponent implements OnInit{
     })
   }
 
-  async initSideNav(){
+  /**
+   * description: 刷新应用列表
+   * author: 金炳<hzjinbing@163.com>
+   */
+  async refreshAppList(){
     let applications: any[] = await this.getApplicationList();
     this.applications = applications.map(item=>{
       return {
@@ -53,11 +51,9 @@ export class ApplicationManageComponent implements OnInit{
       return;
     }
     let paths = this.location.path().split("?")[0].split("/");
-    console.log(paths);
     let allQueryParams = result[1].split('&');
     for(let i = 0 ; i < allQueryParams.length; i++){
       if(allQueryParams[i].split('=')[0] == 'app'){
-        console.log(allQueryParams[i].split('=')[1]);
         let application = this.applications.filter(application=>{
           if(application.name == allQueryParams[i].split('=')[1]){
             return true;
@@ -71,22 +67,25 @@ export class ApplicationManageComponent implements OnInit{
     }
   }
 
-  ngOnInit(): void {
-    this.initSideNav();
+  /**
+   * description: 获取当前应用管理这边是在哪个页面
+   * author: 金炳<hzjinbing@163.com>
+   */
+  getCurrentApp(){
+    let currentApplication = this.applications.filter(item=>{
+      let keys = Object.keys(item.tabs);
+      for(let i = 0; i < keys.length; i++){
+        if(keys[i]){
+          return true;
+        }
+      }
+      return false;
+    });
+    if(currentApplication.length > 0){
+      return currentApplication[0];
+    }else{
+      return null;
+    }
   }
 
-  goPath(item, path){
-    let params = {
-      app: item.name
-    }
-    let queryPath = '';
-    Object.keys(params).map(item=>{
-      if(queryPath.length > 0){
-        queryPath += '&' + item + "=" + params[item];
-      }else{
-        queryPath += item + "=" + params[item];
-      }
-    });
-    this.location.go('/application/' + path, queryPath);
-  }
 }

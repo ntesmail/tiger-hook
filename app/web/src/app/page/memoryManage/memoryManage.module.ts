@@ -4,7 +4,7 @@ import {MemoryManageComponent} from "./memoryManage.component";
 import {AppCommonModule} from "../../common/common.module";
 
 const routers: Route[] = [{
-  path: 'application/dashboard',
+  path: '',
   component: MemoryManageComponent
 }];
 
