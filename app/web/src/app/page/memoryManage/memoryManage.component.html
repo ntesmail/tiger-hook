@@ -16,12 +16,7 @@
   </form>
   <div style="margin-top: 20px;">
     <div nz-row>
-      <div style="float: left; width: 200px; height: 200px; border:1px solid #ccc">
-        <ul>
-          <li>10.10.1.1</li>
-          <li>10.10.10.2</li>
-        </ul>
-      </div>
+      <app-node-list></app-node-list>
       <div style="margin-left: 220px;">
         <div echarts [options]="chartOption" class="demo-chart" *ngIf="!loading"></div>
         <div class="loading" *ngIf="loading">

@@ -22,6 +22,9 @@ interface HttpRequestInfo{
       padding: 5px;
       border-radius: 4px;
     }
+    ul{
+      list-style: none;
+    }
   `]
 })
 export class AppRequestDashboardComponent implements OnInit{

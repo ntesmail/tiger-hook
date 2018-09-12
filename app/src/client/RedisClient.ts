@@ -1,6 +1,7 @@
 import * as redis from 'redis';
 import {RedisClient} from "redis";
 import {IClient} from "./IClient";
+import {config} from '../conf'
 
 export class AppRedisClient implements IClient{
     static __instance: AppRedisClient;
@@ -17,8 +18,8 @@ export class AppRedisClient implements IClient{
 
     constructor(){
         this.client = redis.createClient({
-            host: '127.0.0.1',
-            port: 32768
+            host: config.redis.host,
+            port:  config.redis.port
         });
     }
 

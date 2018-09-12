@@ -4,7 +4,7 @@ export class utils{
         let year = new Date(data.time).getFullYear();
         let month = (new Date(data.time).getMonth() + 1);
         let day = new Date(data.time).getDate();
-        let num = parseInt((data.time - new Date(year, month-1, day).getTime()) / (5*1000 * 60) + "");
+        let num = parseInt((data.time - new Date(year, month-1, day).getTime()) / (5*1000) + "");
         let time = `${year}-${month}-${day}`;
         return {time, num};
     }

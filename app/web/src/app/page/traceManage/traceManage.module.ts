@@ -3,6 +3,7 @@ import {AppCommonModule} from "../../common/common.module";
 import {Route, RouterModule} from "@angular/router";
 import {TraceManageComponent} from "./traceManage.component";
 import {AppRequestDashboardComponent} from "./components/appRequestDashboard.component";
+import {ApplicationCommonModule} from "../common/applicationCommon.module";
 
 const routers: Route[] = [{
   path: '',
@@ -10,7 +11,7 @@ const routers: Route[] = [{
 }];
 
 @NgModule({
-  imports: [AppCommonModule, RouterModule.forChild(routers)],
+  imports: [AppCommonModule, RouterModule.forChild(routers), ApplicationCommonModule],
   declarations: [TraceManageComponent, AppRequestDashboardComponent],
   exports: []
 })

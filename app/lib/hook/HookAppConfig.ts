@@ -1,7 +1,8 @@
 import {AxonRpcClient} from "../client/AxonRpcClient";
 
 export interface IHookConfigOptions {
-    appName: String
+    appName: String,
+    IpAddress?: String
 }
 
 export class HookAppConfig{
@@ -16,6 +17,7 @@ export class HookAppConfig{
     }
 
     appName: String = '';
+    IpAddress: String = '';
 
     axonClient: AxonRpcClient;
 
@@ -25,8 +27,12 @@ export class HookAppConfig{
 
     setConfig(iHookConfig: IHookConfigOptions){
         this.appName = iHookConfig.appName;
+        if(iHookConfig.IpAddress){
+            this.IpAddress = iHookConfig.IpAddress;
+        }
         this.axonClient.send('app', {
-            appName: this.appName
+            appName: this.appName,
+            IpAddress: this.IpAddress
         });
     }
 

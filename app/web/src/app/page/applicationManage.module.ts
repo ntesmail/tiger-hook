@@ -2,7 +2,7 @@ import {NgModule} from "@angular/core";
 import {AppCommonModule} from "../common/common.module";
 import {Route, RouterModule} from "@angular/router";
 import {ApplicationManageComponent} from "./applicationManage.component";
-import {ApplicationSideComponent} from "./side-nav/ApplicationSideNav.component";
+import {ApplicationSideComponent} from "./common/ApplicationSideNav.component";
 
 let routes: Route[] = [{
   path: 'application',

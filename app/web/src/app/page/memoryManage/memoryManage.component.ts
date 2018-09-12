@@ -56,7 +56,7 @@ export class MemoryManageComponent implements OnInit{
         let xAxis = {};
         let currentTime = new Date(result.data.currentTime);
         let time: number = parseInt("" + (new Date(result.data.currentTime).getTime() - new Date(currentTime.getFullYear(), currentTime.getMonth(), currentTime.getDate()).getTime())/5/1000);
-        for(let i = 0; i < time; i++){
+        for(let i = 0; i < 1000; i++){
           xAxis["" + i] = {
             rss: 0,
             heapTotal: 0,
@@ -147,7 +147,7 @@ export class MemoryManageComponent implements OnInit{
         };
         Object.assign(xAxis, result.data.processInfo);
         (<any>this.chartOption.xAxis).data = Object.keys(xAxis).map((item: string) => {
-          let time: number = new Date(2018, 8, 7).getTime() + 5 * 1000 * 60 * parseInt(item);
+          let time: number = new Date(2018, 8, 7).getTime() + 5 * 1000 * parseInt(item);
           let currentDay = new Date(time);
           let result = currentDay.getFullYear() + "-" + (currentDay.getMonth() + 1) + "-" + currentDay.getDate() + " " + currentDay.getHours() + ":" + currentDay.getMinutes() + ":" + currentDay.getSeconds();
           return result;

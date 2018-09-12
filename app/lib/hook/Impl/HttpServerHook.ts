@@ -1,7 +1,7 @@
 import {IHook} from "../IHook";
 import * as shimmer from "shimmer";
 import * as http from 'http';
-import {IncomingMessage, Server, ServerResponse} from "http";
+import {Server} from "http";
 import {AxonRpcClient} from "../../client/AxonRpcClient";
 
 export class HttpServerHook implements IHook{
