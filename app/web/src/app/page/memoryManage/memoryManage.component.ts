@@ -147,7 +147,7 @@ export class MemoryManageComponent implements OnInit{
         };
         Object.assign(xAxis, result.data.processInfo);
         (<any>this.chartOption.xAxis).data = Object.keys(xAxis).map((item: string) => {
-          let time: number = new Date(2018, 8, 7).getTime() + 5 * 1000 * parseInt(item);
+          let time: number = new Date(2018, 8, 7).getTime() + 5 * 1000 * 60 * parseInt(item);
           let currentDay = new Date(time);
           let result = currentDay.getFullYear() + "-" + (currentDay.getMonth() + 1) + "-" + currentDay.getDate() + " " + currentDay.getHours() + ":" + currentDay.getMinutes() + ":" + currentDay.getSeconds();
           return result;

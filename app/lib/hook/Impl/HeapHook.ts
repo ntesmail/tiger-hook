@@ -28,7 +28,7 @@ export class HeapHook implements IHook{
                 mem: process.memoryUsage()
             };
             this.axonClient.send('heap', params)
-        }, 5000);
+        }, 5 * 1000 * 60);
     }
 
 }

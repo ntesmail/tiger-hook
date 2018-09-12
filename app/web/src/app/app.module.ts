@@ -36,8 +36,6 @@ let routers: Route[] = [{
     BrowserModule,
     BrowserAnimationsModule,
     AppCommonModule,
-    // ErrorMessageManageModule,
-    // TraceManageModule,
     ApplicationManageModule,
     RouterModule.forRoot(routers, {useHash: true})
   ],
