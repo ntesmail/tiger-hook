@@ -79,5 +79,18 @@ version_${package_name}: {
 
 ```
 
+## 如何搭建
+1. 编译docker镜像
+```
+npm run docker
+docker-compose up -d
+```
+然后访问网页：
+http://127.0.0.1:8002/#/application/errorMessage?app=tiger-hook-web
+
+已经搭建完毕
+
+2. 我们接入到这个项目中
+
 ## 当前规划
 当前只考虑可用性，架构优化方面到时再逐步优化，先把功能可用，然后到时压测下效果。

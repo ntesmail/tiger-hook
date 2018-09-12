@@ -21,14 +21,14 @@ export class ErrorMessageController implements IWebController{
             if(err){
                 return res.send(HttpUtils.success({}))
             }
-            let errors = JSON.parse(result);
-            let keys = Object.keys(errors);
-            console.log(keys);
-            let params = {
-                "code": 200,
-                data: errors
+            if(result){
+                let errors = JSON.parse(result);
+                let keys = Object.keys(errors);
+                console.log(keys);
+                res.send(HttpUtils.success(errors));
+            }else{
+                res.send(HttpUtils.success({}))
             }
-            res.send(params);
         });
     }
 }

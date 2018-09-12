@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "package": "rm -rf publish && tsc && cp package.json ./publish",
-    "docker": "rm -rf dist && cd app/src && rm -rf public && tsc && cd ../../ && cp package.json ./dist && cp package.json ./dist/lib && cd app/web && npm run build && mkdir -p ../src/public && cp -rf dist/web/* ../src/public && cd ../../ && cd dist && npm install && cd ../ && docker build -t tiger-hook-web .",
+    "docker": "rm -rf dist && cd app/src && rm -rf public && tsc && cd ../../ && cp package.json ./dist && cp package.json ./dist/lib && cd app/web && npm run build && mkdir -p ../src/public && cp -rf dist/web/* ../src/public && mkdir -p ../../dist/src/public && cp -rf dist/web/* ../../dist/src/public && cd ../../ && cd dist && npm install && cd ../ && docker build -t tiger-hook-web .",
     "clean": "rm -rf publish && rm -rf dist"
   },
   "repository": {
