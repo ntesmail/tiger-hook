@@ -9,7 +9,7 @@ import {HeaderMenuComponent} from "./components/HeaderMenu.component";
 import {SideMenuComponent} from "./components/sideMenu/SideMenu.component";
 import {ApplicationSideMenuComponent} from "./components/sideMenu/types/ApplicationSideMenu.component";
 import {UnWrapDirective} from "./Directives/UnWrap.directive";
-import { RouterModule } from "@angular/router";
+import {Route, RouterModule} from "@angular/router";
 import {ErrorMessageManageModule} from "./page/errorMessage/errorMessageManage.module";
 import {AppCommonModule} from "./common/common.module";
 import {TraceManageModule} from "./page/traceManage/traceManage.module";
@@ -17,6 +17,12 @@ import {ApplicationManageModule} from "./page/applicationManage.module";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 registerLocaleData(zh);
+
+let routers: Route[] = [{
+  path: '',
+  redirectTo: 'application/dashboard',
+  pathMatch: 'full'
+}];
 
 @NgModule({
   declarations: [
@@ -33,7 +39,7 @@ registerLocaleData(zh);
     // ErrorMessageManageModule,
     // TraceManageModule,
     ApplicationManageModule,
-    RouterModule.forRoot([], {useHash: true})
+    RouterModule.forRoot(routers, {useHash: true})
   ],
   providers: [{ provide: NZ_I18N, useValue: zh_CN }],
   bootstrap: [AppComponent]
