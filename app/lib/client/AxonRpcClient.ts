@@ -20,7 +20,7 @@ export class AxonRpcClient{
     constructor() {
         this.req = axon.socket('req');
         this.client = new rpc.Client(this.req);
-        this.req.connect(HookAppConfig.getInstance().axon.get("port"), <String>HookAppConfig.getInstance().axon.get("host"));
+        this.req.connect(HookAppConfig.getInstance().axon.get("port"), HookAppConfig.getInstance().axon.get("host"));
     }
 
     send(type: string, params: any){

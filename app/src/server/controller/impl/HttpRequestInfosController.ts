@@ -15,7 +15,6 @@ export class HttpRequestInfosController implements IWebController{
 
     processResult(req: Request, res: Response, next: NextFunction): void {
         let {time} = utils.getTime({time: new Date().getTime()});
-        console.log("http_" + time);
         this.redisClient.keys("http_" + time + "_/xhr*", (err, result)=>{
             if(err){
                 return;

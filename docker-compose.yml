@@ -5,7 +5,7 @@ services:
     ports:
       - "6379:6379"
   tiger-hook-web:
-    image: tiger-hook-web:latest
+    image: hub.c.163.com/jinbing/tiger-hook-web
     ports:
       - "8002:8002"
       - "4000:4000"

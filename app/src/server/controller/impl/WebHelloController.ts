@@ -22,7 +22,6 @@ export class WebHelloController implements IWebController{
                 resolve(JSON.parse(result));
             })
         });
-        console.log(`useTime: ${new Date().getTime() - startTime}ms`);
         let result = {
             code: 200,
             data: {

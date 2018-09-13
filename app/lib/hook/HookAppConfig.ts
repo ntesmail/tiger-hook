@@ -3,7 +3,8 @@ import {AxonRpcClient} from "../client/AxonRpcClient";
 export interface IHookConfigOptions {
     appName: String,
     IpAddress?: String,
-    axon?: Map<String, Number>
+    axon?: Map<String, Number>,
+    version?: String
 }
 
 export class HookAppConfig{
@@ -20,11 +21,11 @@ export class HookAppConfig{
     appName: String = '';
     IpAddress: String = '';
     axon: Map<String, any> = new Map<String, any>();
+    version: String = '';
 
-    axonClient: AxonRpcClient;
+    axonClient?: AxonRpcClient;
 
     constructor(){
-        this.axonClient = AxonRpcClient.getInstance();
         this.axon.set("port", 4000);
         this.axon.set("host", '127.0.0.1');
     }
@@ -42,6 +43,10 @@ export class HookAppConfig{
                 this.axon.set("port", iHookConfig.axon.get("port"));
             }
         }
+        if(iHookConfig.version){
+            this.version = iHookConfig.version;
+        }
+        this.axonClient = AxonRpcClient.getInstance();
         this.axonClient.send('app', {
             appName: this.appName,
             IpAddress: this.IpAddress
